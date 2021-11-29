@@ -23,10 +23,11 @@ class Router
         if (file_exists($controllerFile)) {
             require_once $controllerFile;
             $controllerName = $this->getController();
+            $uri = $this->getUri();
             $this->controller = new $controllerName();
 
-            if (isset($url[1])) {
-                $this->controller->{$url[1]}();
+            if (isset($uri[1])) {
+                $this->controller->{$uri[1]}();
             }
         } else {
             $this->controller = new Fail();

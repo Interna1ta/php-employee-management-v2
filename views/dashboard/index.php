@@ -10,6 +10,10 @@
 
 <body>
     <h1>Dashboard</h1>
+
+    <?php
+    echo BASE_URL;
+    ?>
 </body>
 
 </html>
