@@ -1,0 +1,17 @@
+{
+  "name": "php-employee-management-v2",
+  "version": "1.0.0",
+  "description": "This project provides an easy-to-use interface to manage employees information",
+  "main": "index.php",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Gonzalo García and Pere Serra",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "bootstrap-icons": "^1.0.0-alpha4",
+    "jquery": "^3.5.1",
+    "jsgrid": "^1.5.3"
+  }
+}

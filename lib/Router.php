@@ -1,7 +1,7 @@
 <?php
 
-require_once "controllers/Error.php";
-require_once "controllers/Dashboard.php";
+require_once "controllers/error.php";
+require_once "controllers/dashboard.php";
 
 class Router
 {
@@ -41,7 +41,7 @@ class Router
 
     public function setController()
     {
-        $this->controller = empty($this->uri[0]) ? "Dashboard" : $this->uri[0];
+        $this->controller = empty($this->uri[0]) ? "dashboard" : $this->uri[0];
     }
 
     public function setMethod()

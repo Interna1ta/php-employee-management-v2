@@ -1,19 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+// require_once("./library/loginManager.php");
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-</head>
+// checkSession();
 
-<body>
-    <h1>Dashboard</h1>
+require 'views/header.php';
+?>
 
-    <?php
-    echo BASE_URL;
-    ?>
-</body>
+<div class="container-fluid">
+    <div class="row">
 
-</html>
+        <main class="col-12 ms-sm-auto px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">
+                    Welcome <span class="text-primary"><?= strstr($_SESSION['email'], '@', true) ?></span>
+                </h1>
+            </div>
+
+            <div id="jsGrid"></div>
+        </main>
+    </div>
+</div>
+
+<?php require 'views/footer.php' ?>
