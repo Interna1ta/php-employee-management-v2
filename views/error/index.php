@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <h1>ERROR DETECTED</h1>
     <?php echo $this->message ?>
 </body>
 
