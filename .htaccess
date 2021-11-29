@@ -1,0 +1,12 @@
+# Allows rewriting URL petitions
+
+RewriteEngine On
+
+# Condition: if there is not a file or a directory with the name of the request
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirects all petitions to index
+
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]

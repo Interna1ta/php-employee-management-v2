@@ -16,6 +16,6 @@ function conn()
 
         return $pdo;
     } catch (PDOException $e) {
-        require_once(VIEWS . "/error/error.php");
+        require_once("views/error");
     }
 }
