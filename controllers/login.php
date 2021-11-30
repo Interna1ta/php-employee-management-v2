@@ -6,32 +6,28 @@ class Login extends Controller
   {
     parent::__construct();
     $this->view->render("login");
+    // $this->loadModel("login");
   }
 
-  // function manageLogin()
-  // {
-  //   // echo $this->model;
-  //   // echo 'yes';
-  //   // die();
-  //   if (isset($_POST)) {
-  //     $this->model->authUser($_POST);
-  //   }
-  //   // if (isset($_GET['logout'])) {
-  //   //   $this->model->destroySession();
-  //   // } else {
-  //   //   echo $this->model;
-  //   //   die();
-  //   //   if (method_exists($this->model, 'authUser')) {
-  //   //     echo 'yesyes';
-  //   //     die();
-  //   //     $this->model->authUser();
-  //   //   }
-  //   // }
-  // }
-
-  function authUser()
+  public function logoutUser()
   {
-    $this->model->authUser();
+    $this->model->logout();
+    header('Location: ' . BASE_URL . 'login');
+  }
+
+  public function loginUser()
+  {
+    // echo $_POST;
+    // die();
+
+    $result = $this->model->login($_POST['email'], $_POST['password']);
+
+    if (!$result) {
+      header('Location: ' . BASE_URL . 'login');
+      exit();
+    }
+    header('Location: ' . BASE_URL . 'dashboard');
+    exit();
   }
 
   // function destroySession()

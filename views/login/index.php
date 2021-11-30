@@ -1,10 +1,3 @@
-<?php
-// require_once("./src/library/loginManager.php");
-
-//Check for session and error / info messages
-// $alert = checkSession();
-?>
-
 <!doctype html>
 <html lang="en">
 
@@ -27,7 +20,7 @@
 <body class="text-center">
 
   <main class="form-signin">
-    <form action="login/authUser" method="POST">
+    <form action="<?php echo BASE_URL ?>login/loginUser" method="POST">
       <img src="<?php echo BASE_URL; ?>/assets/img/assembler_icon.jfif" width="40" height="40" class="me-3" alt="Assembler School">
       <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
@@ -42,7 +35,6 @@
       <!-- <?= ($alert) ? "<div class='alert alert-$alert[type] role='alert'>$alert[text]</div>" : "" ?> -->
       <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
-
     </form>
   </main>
 

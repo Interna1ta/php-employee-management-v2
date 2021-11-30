@@ -2,6 +2,14 @@
 
 class LoginModel extends Model
 {
+  function __construct()
+  {
+    parent::__construct();
+    if (session_status() == PHP_SESSION_NONE) {
+      session_start();
+    }
+  }
+
   public function checkSession()
   {
     // Start session
@@ -17,7 +25,7 @@ class LoginModel extends Model
       }
 
       if (isset($_SESSION["email"])) {
-        header("Location:./src/dashboard.php");
+        header('Location: ' . BASE_URL . 'dashboard/index');
       } else {
 
         // Check for session error
@@ -32,7 +40,7 @@ class LoginModel extends Model
     } else {
       if (!isset($_SESSION["email"]) || !isset($_SESSION["lastConnection"])) {
         $_SESSION["loginError"] = "You don't have permission to enter the dashboard. Please Login.";
-        header("Location:../index.php");
+        header('Location: ' . BASE_URL . 'login/index');
       }
 
       if (isset($_SESSION["lastConnection"]) && (time() - $_SESSION["lastConnection"] >= 3000)) {
@@ -56,7 +64,8 @@ class LoginModel extends Model
 
     // Destroy the session
     session_destroy();
-    header("Location:../index.php?timeExpire=true");
+    // header("Location:../index.php?timeExpire=true");
+    header('Location: ' . BASE_URL . 'login/index');
   }
 
   public function destroySession()
@@ -72,33 +81,37 @@ class LoginModel extends Model
 
     // Destroy the session
     session_destroy();
-    header("Location:../../index.php?logout=true");
+    // header("Location:../../index.php?logout=true");
+    header('Location: ' . BASE_URL . 'login/index');
   }
 
-  public function authUser($_POST)
+  public function login(string $email, string $pass)
   {
     // Start session
     session_start();
 
     // Get form input values
-    $email = $_POST["email"];
-    $pass = $_POST["pass"];
+    // $email = $_POST["email"];
+    // $pass = $_POST["pass"];
 
     echo 'yes';
+    die();
 
-    // // Now we should look for this values in a database
-    // // Instead we'll use static vars
-    // if (self::checkUser($email, $pass)) {
-    //   // we usually save in a session variable user id and other user data like name, surname....
-    //   $_SESSION["email"] = $email;
-    //   // we save the last connection
-    //   $_SESSION["lastConnection"] = time();
-    //   // when we check that the email and password is correct, we redirect the user to the dashboard
-    //   header("Location:../dashboard.php");
-    // } else {
-    //   $_SESSION["loginError"] = "Wrong email or password!";
-    //   header("Location:../../index.php");
-    // }
+    // Now we should look for this values in a database
+    // Instead we'll use static vars
+    if (self::checkUser($email, $pass)) {
+      // we usually save in a session variable user id and other user data like name, surname....
+      $_SESSION["email"] = $email;
+      // we save the last connection
+      $_SESSION["lastConnection"] = time();
+      // when we check that the email and password is correct, we redirect the user to the dashboard
+      // header("Location:../dashboard.php");
+      header('Location: ' . BASE_URL . 'dashboard/index');
+    } else {
+      $_SESSION["loginError"] = "Wrong email or password!";
+      // header("Location:../../index.php");
+      header('Location: ' . BASE_URL . 'dashboard/index');
+    }
   }
 
   public function checkUser(string $email, string $pass)

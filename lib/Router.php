@@ -5,7 +5,6 @@ require_once "controllers/dashboard.php";
 
 class Router
 {
-
     public $uri;
     public $controller;
     public $method;
@@ -25,9 +24,9 @@ class Router
             $controllerName = $this->getController();
             $uri = $this->getUri();
 
-            echo '<pre>';
-            echo print_r($uri);
-            echo '</pre>';
+            // echo '<pre>';
+            // echo print_r($uri);
+            // echo '</pre>';
 
             $this->controller = new $controllerName();
             $this->controller->loadModel($controllerName);
