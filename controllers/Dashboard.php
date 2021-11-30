@@ -18,12 +18,27 @@ class Dashboard extends Controller
         echo $alumni;
     }
 
+    public function printNewStudent()
+    {
+        if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST") {
+            $this->model->add($_POST);
+        }
+    }
+
+    public function printUpdates()
+    {
+        if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "PUT") {
+            parse_str(file_get_contents("php://input"), $_PUT);
+            $this->model->update($_PUT);
+        }
+    }
+
     public function manageEmployees()
     {
         switch ($_SERVER["REQUEST_METHOD"]) {
             case 'POST':
-                $this->model->add($_POST);
-                $this->showHTML();
+                // $this->model->add($_POST);
+                // $this->showHTML();
                 break;
             case 'PUT':
                 // parse_str(file_get_contents("php://input"), $put_vars);

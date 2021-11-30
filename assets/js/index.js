@@ -17,34 +17,20 @@ let grid = $("#jsGrid").jsGrid({
         type: "GET",
         data: JSON.stringify({ action: "AJAX" }),
       });
-      console.log(items);
       return { data: items };
     },
     insertItem: async function (item) {
-      let d = $.Deferred();
-      //   let res = await getJSONData();
-      //   let newID = res[res.length - 1].id + 1;
-      //   console.log(newID);
-      //   item["id"] = newID;
       return $.ajax({
         type: "POST",
-        url: "dashboard/manageEmployees",
+        url: "printNewStudent",
         data: item,
-        success: function (data) {
-          return d.resolve(data);
-        },
       });
     },
     updateItem: function (item) {
-      var d = $.Deferred();
-      console.log(item);
       return $.ajax({
         type: "PUT",
-        url: "controllers/employee/manageEmployees",
+        url: "printUpdates",
         data: item,
-        success: function (data) {
-          return d.resolve(data);
-        },
       });
     },
     deleteItem: function (item) {
