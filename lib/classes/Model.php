@@ -4,6 +4,6 @@ class Model
 {
     public function __construct()
     {
-        echo "New Model";
+        $this->db = new Database();
     }
 }
