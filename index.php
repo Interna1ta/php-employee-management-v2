@@ -10,6 +10,6 @@ require_once "lib/Router.php";
 $router = new Router();
 
 
-$controller = $router->getController();
-$method = $router->getMethod();
-$param = $router->getParam();
+// $controller = $router->getController();
+// $method = $router->getMethod();
+// $param = $router->getParam();

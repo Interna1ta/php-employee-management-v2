@@ -11,19 +11,19 @@
   <title>PHP Employees Management</title>
 
   <!-- JQuery -->
-  <script src="node_modules\jquery\dist\jquery.min.js"></script>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
 
   <!-- JSGrid -->
-  <link type="text/css" rel="stylesheet" href="node_modules\jsgrid\dist\jsgrid.min.css" />
-  <link type="text/css" rel="stylesheet" href="node_modules\jsgrid\dist/jsgrid-theme.min.css" />
-  <script type="text/javascript" src="node_modules\jsgrid\dist\jsgrid.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="../node_modules/jsgrid/dist/jsgrid.min.css" />
+  <link type="text/css" rel="stylesheet" href="../node_modules/jsgrid/dist/jsgrid-theme.min.css" />
+  <script type="text/javascript" src="../node_modules/jsgrid/dist/jsgrid.min.js"></script>
 
   <!-- Bootstrap -->
-  <link type="text/css" rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <script type="text/javascript" defer href="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <script type="text/javascript" defer href="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
   <!-- Custom styles for this template -->
-  <link href="assets/css/styles.css" rel="stylesheet">
+  <link href="../assets/css/styles.css" rel="stylesheet">
 </head>
 
 <body>

@@ -1,7 +1,8 @@
-$("#jsGrid").jsGrid({
+let grid = $("#jsGrid").jsGrid({
   width: "100%",
   height: "600px",
   inserting: true,
+  pageLoading: true,
   editing: true,
   sorting: true,
   paging: true,
@@ -10,16 +11,14 @@ $("#jsGrid").jsGrid({
   pageButtonCount: 5,
   deleteConfirm: "Do you really want to delete data?",
   controller: {
-    loadData: function () {
-      var d = $.Deferred();
-      return $.ajax({
-        url: "../resources/employees.json",
+    loadData: async function () {
+      let items = await $.ajax({
+        url: "printData",
         type: "GET",
-        dataType: "json",
-        success: function (data) {
-          return d.resolve(data);
-        },
+        data: JSON.stringify({ action: "AJAX" }),
       });
+      console.log(items);
+      return { data: items };
     },
     insertItem: async function (item) {
       let d = $.Deferred();
@@ -29,7 +28,7 @@ $("#jsGrid").jsGrid({
       //   item["id"] = newID;
       return $.ajax({
         type: "POST",
-        url: "controllers/employee/manageEmployees",
+        url: "dashboard/manageEmployees",
         data: item,
         success: function (data) {
           return d.resolve(data);

@@ -1,11 +1,10 @@
 <?php
 
-class Employee extends Controller
+class EmployeeModel extends Model
 {
 
     public function __construct()
     {
         parent::__construct();
-        $this->view->render("employee");
     }
 }

@@ -26,7 +26,7 @@ class Router
             $this->controller = new $controllerName();
             $this->controller->loadModel($controllerName);
 
-            if (isset($uri[1])) {
+            if (isset($uri[1]) && method_exists($this->controller, $uri[1])) {
                 $this->controller->{$uri[1]}();
             }
         } else {
