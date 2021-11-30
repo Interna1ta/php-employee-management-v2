@@ -1,6 +1,9 @@
 <?php
 
-$baseUrl = $_SERVER["REQUEST_URI"];
-// $baseUrl = 'http://localhost/php-employee-management-v2';
+$longUrl = getcwd();
+
+$urlExplode = explode("htdocs", $longUrl);
+
+$baseUrl = $urlExplode[1];
 
 define("BASE_URL", $baseUrl);

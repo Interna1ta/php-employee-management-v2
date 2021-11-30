@@ -7,5 +7,11 @@ class Dashboard extends Controller
     {
         parent::__construct();
         $this->view->render("dashboard");
+        $this->getEmployees();
+    }
+
+    public function getEmployees()
+    {
+        $this->model->get();
     }
 }

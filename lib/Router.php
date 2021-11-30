@@ -1,7 +1,6 @@
 <?php
 
 require_once "controllers/error.php";
-require_once "controllers/dashboard.php";
 
 class Router
 {
@@ -25,6 +24,7 @@ class Router
             $controllerName = $this->getController();
             $uri = $this->getUri();
             $this->controller = new $controllerName();
+            $this->controller->loadModel($controllerName);
 
             if (isset($uri[1])) {
                 $this->controller->{$uri[1]}();
