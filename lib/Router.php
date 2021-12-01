@@ -4,7 +4,6 @@ require_once "controllers/error.php";
 
 class Router
 {
-
     public $uri;
     public $controller;
     public $method;

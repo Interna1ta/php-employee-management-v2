@@ -30,26 +30,15 @@ class Dashboard extends Controller
         if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "PUT") {
             parse_str(file_get_contents("php://input"), $_PUT);
             $this->model->update($_PUT);
+            // echo $updatedStudent;
         }
     }
 
-    public function manageEmployees()
+    public function showDelete()
     {
-        switch ($_SERVER["REQUEST_METHOD"]) {
-            case 'POST':
-                // $this->model->add($_POST);
-                // $this->showHTML();
-                break;
-            case 'PUT':
-                // parse_str(file_get_contents("php://input"), $put_vars);
-                // updateEmployee($put_vars);
-                break;
-            case "DELETE":
-                // parse_str(file_get_contents("php://input"), $delete_vars);
-                // deleteEmployee($delete_vars["id"]);
-                break;
-            default:
-                break;
+        if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "DELETE") {
+            parse_str(file_get_contents("php://input"), $_DELETE);
+            $this->model->delete($_DELETE);
         }
     }
 }
