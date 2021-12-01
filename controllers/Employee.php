@@ -28,4 +28,12 @@ class Employee extends Controller
             header("Location: " . BASE_URL . "/dashboard/showHTML");
         }
     }
+
+    public function updateStudent()
+    {
+        if (isset($_POST)) {
+            $this->model->update($_POST);
+            header("Location: " . BASE_URL . "/dashboard/showHTML");
+        }
+    }
 }

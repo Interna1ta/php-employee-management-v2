@@ -39,19 +39,20 @@ class DashboardModel extends Model
 
     public function add($data)
     {
-        $query1 = $this->db->conn()->prepare("BEGIN;");
-        $query2 = $this->db->conn()->prepare("INSERT INTO addresses (postal_code, state, city, street_address, id) 
-          VALUES(:postal_code,:state, :city, :street_address, :id);");
-        $query3 = $this->db->conn()->prepare("INSERT INTO alumni (name, email, age, phone_number, address_id, gender_id)
-          VALUES(:name, :email, :age, :phone_number, :address_id, :gender_id);");
-        $query4 = $this->db->conn()->prepare("COMMIT;");
+        $connection = $this->db->conn();
 
-        $newAddressId = rand(13, 5000);
-        $data["id"] = $newAddressId;
+        $query1 = $connection->prepare("BEGIN;");
+        $query2 = $connection->prepare("INSERT INTO addresses (postal_code, state, city, street_address) 
+          VALUES(:postal_code, :state, :city, :street_address);");
+        $query3 = $connection->prepare("INSERT INTO alumni (name, email, age, phone_number, address_id, gender_id)
+          VALUES(:name, :email, :age, :phone_number, :address_id, :gender_id);");
+        $query4 = $connection->prepare("COMMIT;");
+
         try {
             $query1->execute();
-            $query2->execute(["postal_code" => $data["postalCode"], "state" => $data["state"], "city" => $data["city"], "street_address" => $data["streetAddress"], "id" => $newAddressId]);
-            $query3->execute(["name" => $data["name"], "email" => $data["email"], "age" => $data["age"], "phone_number" => $data["phoneNumber"], "address_id" => $newAddressId, "gender_id" => 3]);
+            $query2->execute(["postal_code" => $data["postalCode"], "state" => $data["state"], "city" => $data["city"], "street_address" => $data["streetAddress"]]);
+            $lastInsertId = $connection->lastInsertId();
+            $query3->execute(["name" => $data["name"], "email" => $data["email"], "age" => $data["age"], "phone_number" => $data["phoneNumber"], "address_id" => $lastInsertId, "gender_id" => 3]);
             $query4->execute();
         } catch (PDOException $e) {
             echo $e;
@@ -66,13 +67,13 @@ class DashboardModel extends Model
         WHERE id = :id;");
         $query3 = $this->db->conn()->prepare("UPDATE addresses
         SET postal_code = :postal_code, state = :state, city = :city, street_address = :street_address
-        WHERE id = :id;");
+        WHERE id = :address_id;");
         $query4 = $this->db->conn()->prepare("COMMIT;");
 
         try {
             $query1->execute();
             $query2->execute(["name" => $data["name"], "email" => $data["email"], "age" => $data["age"], "phone_number" => $data["phoneNumber"], "id" => $data["id"]]);
-            $query3->execute(["postal_code" => $data["postalCode"], "state" => $data["state"], "city" => $data["city"], "street_address" => $data["streetAddress"], "id" => $data["address_id"]]);
+            $query3->execute(["postal_code" => $data["postalCode"], "state" => $data["state"], "city" => $data["city"], "street_address" => $data["streetAddress"], "address_id" => $data["address_id"]]);
             $query4->execute();
             return json_encode($data);
         } catch (PDOException $e) {

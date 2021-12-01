@@ -1,12 +1,10 @@
 <?php
-// require_once("./library/loginManager.php");
-
-// checkSession();
-
 require 'views/header.php';
 ?>
 
-<form action="<?php echo BASE_URL; ?>/employee/<?php echo isset($this->student) ? "update" : "sendNewStudent" ?>" method="<?php echo isset($this->student) ? "PUT" : "POST" ?>" class="container mt-4">
+<form action="<?php echo BASE_URL; ?>/employee/<?php echo isset($this->student) ? "updateStudent" : "sendNewStudent" ?>" method="POST" class="container mt-4">
+    <input type="hidden" name="id" value="<?php echo isset($this->student) ? $this->student["id"] : "" ?>">
+    <input type="hidden" name="addressId" value="<?php echo isset($this->student) ? $this->student["address_id"] : "" ?>">
     <div class="row">
         <div class="col-sm-6 form-floating mt-3">
             <label for="floatingName">Name</label>
@@ -56,8 +54,8 @@ require 'views/header.php';
             <?= ($alert) ? "<div class='alert alert-$alert[type] role='alert'>$alert[text]</div>" : "" ?>
         </div>
         <div class="col-12 form-floating mt-3">
-            <button class="btn btn-primary" type="submit">Submit</button>
-            <button class="btn btn-secondary" onclick="">Return</button>
+            <button class="btn btn-primary" type="submit"><?php echo isset($this->student) ? "Edit" : "Create" ?></button>
+            <button class="btn btn-secondary" onclick="<?php header("Location: " . BASE_URL . "/dashboard/showHTML"); ?>">Return</button>
         </div>
     </div>
 </form>
