@@ -1,10 +1,4 @@
-<?php
-// require_once("./library/loginManager.php");
-
-// checkSession();
-
-require 'views/header.php';
-?>
+<?php require 'views/header.php'; ?>
 
 <form action="<?php echo BASE_URL; ?>/employee/<?php echo isset($this->student) ? "update" : "sendNewStudent" ?>" method="<?php echo isset($this->student) ? "PUT" : "POST" ?>" class="container mt-4">
     <div class="row">

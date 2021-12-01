@@ -2,14 +2,12 @@
 
 class View
 {
-
     public function __construct()
     {
     }
 
-    public function render($name)
+    public function render(string $name): void
     {
-        // require_once "views/" . $name . ".php";
         require_once "views/" . $name . "/index.php";
     }
 }

@@ -2,18 +2,18 @@
 
 class EmployeeModel extends Model
 {
-
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function getStudent($id)
+    public function getStudent(string $id): array
     {
         $query = $this->db->conn()->prepare("SELECT a.*, b.*
         FROM alumni AS a
         INNER JOIN addresses AS b ON a.address_id = b.id
         WHERE a.id = :id");
+
         try {
             $query->execute(["id" => $id]);
             $student = $query->fetch();
@@ -23,7 +23,7 @@ class EmployeeModel extends Model
         }
     }
 
-    public function add($data)
+    public function add(array $data): void
     {
         $query1 = $this->db->conn()->prepare("BEGIN;");
         $query2 = $this->db->conn()->prepare("INSERT INTO addresses (postal_code, state, city, street_address, id) 
@@ -34,6 +34,7 @@ class EmployeeModel extends Model
 
         $newAddressId = rand(13, 5000);
         $data["id"] = $newAddressId;
+
         try {
             $query1->execute();
             $query2->execute(["postal_code" => $data["postalCode"], "state" => $data["state"], "city" => $data["city"], "street_address" => $data["streetAddress"], "id" => $newAddressId]);

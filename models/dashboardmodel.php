@@ -37,7 +37,7 @@ class DashboardModel extends Model
         }
     }
 
-    public function add($data)
+    public function add(array $data): void
     {
         $query1 = $this->db->conn()->prepare("BEGIN;");
         $query2 = $this->db->conn()->prepare("INSERT INTO addresses (postal_code, state, city, street_address, id) 
@@ -48,6 +48,7 @@ class DashboardModel extends Model
 
         $newAddressId = rand(13, 5000);
         $data["id"] = $newAddressId;
+
         try {
             $query1->execute();
             $query2->execute(["postal_code" => $data["postalCode"], "state" => $data["state"], "city" => $data["city"], "street_address" => $data["streetAddress"], "id" => $newAddressId]);
@@ -58,7 +59,7 @@ class DashboardModel extends Model
         }
     }
 
-    public function update($data)
+    public function update(array $data)
     {
         $query1 = $this->db->conn()->prepare("BEGIN;");
         $query2 = $this->db->conn()->prepare("UPDATE alumni
@@ -80,7 +81,7 @@ class DashboardModel extends Model
         }
     }
 
-    public function delete($data)
+    public function delete(array $data): void
     {
         $query1 = $this->db->conn()->prepare("BEGIN;");
         $query2 = $this->db->conn()->prepare("DELETE FROM alumni
