@@ -37,7 +37,7 @@ class DashboardModel extends Model
         }
     }
 
-    public function add($data)
+    public function add(array $data): void
     {
         $connection = $this->db->conn();
 
@@ -59,7 +59,7 @@ class DashboardModel extends Model
         }
     }
 
-    public function update($data)
+    public function update(array $data)
     {
         $query1 = $this->db->conn()->prepare("BEGIN;");
         $query2 = $this->db->conn()->prepare("UPDATE alumni
@@ -81,7 +81,7 @@ class DashboardModel extends Model
         }
     }
 
-    public function delete($data)
+    public function delete(array $data): void
     {
         $query1 = $this->db->conn()->prepare("BEGIN;");
         $query2 = $this->db->conn()->prepare("DELETE FROM alumni

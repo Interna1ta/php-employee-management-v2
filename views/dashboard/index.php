@@ -1,7 +1,4 @@
 <?php
-// require_once("./library/loginManager.php");
-
-// checkSession();
 require_once "controllers/dashboard.php";
 require 'views/header.php';
 ?>

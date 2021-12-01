@@ -2,13 +2,12 @@
 
 class Controller
 {
-
     public function __construct()
     {
         $this->view = new View();
     }
 
-    function loadModel($model)
+    function loadModel(string $model): void
     {
         $url = "models/" . $model . "model.php";
 

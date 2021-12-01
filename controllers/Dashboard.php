@@ -7,34 +7,33 @@ class Dashboard extends Controller
         parent::__construct();
     }
 
-    public function showHTML()
+    public function showHTML(): void
     {
         $this->view->render("dashboard");
     }
 
-    public function printData()
+    public function printData(): void
     {
         $alumni = $this->model->get();
         echo $alumni;
     }
 
-    public function printNewStudent()
+    public function printNewStudent(): void
     {
         if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST") {
             $this->model->add($_POST);
         }
     }
 
-    public function printUpdates()
+    public function printUpdates(): void
     {
         if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "PUT") {
             parse_str(file_get_contents("php://input"), $_PUT);
             $this->model->update($_PUT);
-            // echo $updatedStudent;
         }
     }
 
-    public function showDelete()
+    public function showDelete(): void
     {
         if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "DELETE") {
             parse_str(file_get_contents("php://input"), $_DELETE);

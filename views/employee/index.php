@@ -1,6 +1,4 @@
-<?php
-require 'views/header.php';
-?>
+<?php require 'views/header.php'; ?>
 
 <form action="<?php echo BASE_URL; ?>/employee/<?php echo isset($this->student) ? "updateStudent" : "sendNewStudent" ?>" method="POST" class="container mt-4">
     <input type="hidden" name="id" value="<?php echo isset($this->student) ? $this->student["id"] : "" ?>">

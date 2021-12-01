@@ -2,18 +2,18 @@
 
 class EmployeeModel extends Model
 {
-
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function getStudent($id)
+    public function getStudent(string $id): array
     {
         $query = $this->db->conn()->prepare("SELECT a.*, b.postal_code, b.state, b.city, b.street_address
         FROM alumni AS a
         INNER JOIN addresses AS b ON a.address_id = b.id
         WHERE a.id = :id");
+
         try {
             $query->execute(["id" => $id]);
             $student = $query->fetch();
@@ -23,7 +23,7 @@ class EmployeeModel extends Model
         }
     }
 
-    public function add($data)
+    public function add(array $data): void
     {
         $connection = $this->db->conn();
 

@@ -33,27 +33,27 @@ class Router
         }
     }
 
-    public function setUri()
+    public function setUri(): void
     {
         $this->uri = isset($_GET["url"]) ? explode("/", $_GET["url"]) : [];
     }
 
-    public function setController()
+    public function setController(): void
     {
         $this->controller = empty($this->uri[0]) ? "dashboard" : $this->uri[0];
     }
 
-    public function setMethod()
+    public function setMethod(): void
     {
         $this->method = !empty($this->uri[1]) ? $this->uri[1] : "";
     }
 
-    public function setParam()
+    public function setParam(): void
     {
         $this->param = !empty($this->uri[2]) ? $this->uri[2] : "";
     }
 
-    public function getUri()
+    public function getUri(): array
     {
         return $this->uri;
     }

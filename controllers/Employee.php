@@ -8,7 +8,7 @@ class Employee extends Controller
         parent::__construct();
     }
 
-    public function showHTML()
+    public function showHTML(): void
     {
         $uriArray = explode("/", $_GET["url"]);
         if (isset($uriArray[2])) $param = $uriArray[2];
@@ -21,7 +21,7 @@ class Employee extends Controller
         $this->view->render("employee");
     }
 
-    public function sendNewStudent()
+    public function sendNewStudent(): void
     {
         if (isset($_POST)) {
             $this->model->add($_POST);
