@@ -58,17 +58,17 @@ class Router
         return $this->uri;
     }
 
-    public function getController()
+    public function getController(): string|null
     {
         return $this->controller;
     }
 
-    public function getMethod()
+    public function getMethod(): string|null
     {
         return $this->method;
     }
 
-    public function getParam()
+    public function getParam(): string|null
     {
         return $this->param;
     }

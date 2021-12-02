@@ -19,7 +19,7 @@ class StudentModel extends Model
             $student = $query->fetch();
             return $student;
         } catch (PDOException $e) {
-            return $e;
+            echo $e;
         }
     }
 
@@ -45,7 +45,7 @@ class StudentModel extends Model
         }
     }
 
-    public function updateStudent($data)
+    public function updateStudent(array $data): string|false
     {
         $query1 = $this->db->conn()->prepare("BEGIN;");
         $query2 = $this->db->conn()->prepare("UPDATE alumni

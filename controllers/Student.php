@@ -29,7 +29,7 @@ class Student extends Controller
         }
     }
 
-    public function updateStudent()
+    public function updateStudent(): void
     {
         if (isset($_POST)) {
             $this->model->updateStudent($_POST);

@@ -8,7 +8,7 @@ class DashboardModel extends Model
         parent::__construct();
     }
 
-    public function getStudents()
+    public function getStudents(): string|false
     {
         $query = $this->db->conn()->prepare("SELECT a.id, a.name, a.email, a.age, a.address_id, b.postal_code, a.phone_number, b.state, b.city, b.street_address
         FROM alumni AS a
@@ -33,7 +33,7 @@ class DashboardModel extends Model
             }
             return json_encode($output);
         } catch (PDOException $e) {
-            return $e;
+            echo $e;
         }
     }
 
@@ -59,7 +59,7 @@ class DashboardModel extends Model
         }
     }
 
-    public function updateStudent(array $data)
+    public function updateStudent(array $data): string|false
     {
         $query1 = $this->db->conn()->prepare("BEGIN;");
         $query2 = $this->db->conn()->prepare("UPDATE alumni
