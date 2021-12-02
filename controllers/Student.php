@@ -1,14 +1,14 @@
 <?php
 require_once "lib/Router.php";
 
-class Employee extends Controller
+class Student extends Controller
 {
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function showHTML(): void
+    public function show(): void
     {
         $uriArray = explode("/", $_GET["url"]);
         if (isset($uriArray[2])) $param = $uriArray[2];
@@ -18,22 +18,22 @@ class Employee extends Controller
             $this->view->student = $student;
         }
 
-        $this->view->render("employee");
+        $this->view->render("student");
     }
 
     public function sendNewStudent(): void
     {
         if (isset($_POST)) {
-            $this->model->add($_POST);
-            header("Location: " . BASE_URL . "/dashboard/showHTML");
+            $this->model->addStudent($_POST);
+            header("Location: " . BASE_URL . "/dashboard/show");
         }
     }
 
     public function updateStudent()
     {
         if (isset($_POST)) {
-            $this->model->update($_POST);
-            header("Location: " . BASE_URL . "/dashboard/showHTML");
+            $this->model->updateStudent($_POST);
+            header("Location: " . BASE_URL . "/dashboard/show");
         }
     }
 }

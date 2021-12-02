@@ -1,6 +1,6 @@
 <?php
 
-class EmployeeModel extends Model
+class StudentModel extends Model
 {
     public function __construct()
     {
@@ -23,7 +23,7 @@ class EmployeeModel extends Model
         }
     }
 
-    public function add(array $data): void
+    public function addStudent(array $data): void
     {
         $connection = $this->db->conn();
 
@@ -45,7 +45,7 @@ class EmployeeModel extends Model
         }
     }
 
-    public function update($data)
+    public function updateStudent($data)
     {
         $query1 = $this->db->conn()->prepare("BEGIN;");
         $query2 = $this->db->conn()->prepare("UPDATE alumni

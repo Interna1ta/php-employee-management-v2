@@ -8,7 +8,7 @@ class DashboardModel extends Model
         parent::__construct();
     }
 
-    public function get()
+    public function getStudents()
     {
         $query = $this->db->conn()->prepare("SELECT a.id, a.name, a.email, a.age, a.address_id, b.postal_code, a.phone_number, b.state, b.city, b.street_address
         FROM alumni AS a
@@ -37,7 +37,7 @@ class DashboardModel extends Model
         }
     }
 
-    public function add(array $data): void
+    public function addStudent(array $data): void
     {
         $connection = $this->db->conn();
 
@@ -59,7 +59,7 @@ class DashboardModel extends Model
         }
     }
 
-    public function update(array $data)
+    public function updateStudent(array $data)
     {
         $query1 = $this->db->conn()->prepare("BEGIN;");
         $query2 = $this->db->conn()->prepare("UPDATE alumni
@@ -81,7 +81,7 @@ class DashboardModel extends Model
         }
     }
 
-    public function delete(array $data): void
+    public function deleteStudent(array $data): void
     {
         $query1 = $this->db->conn()->prepare("BEGIN;");
         $query2 = $this->db->conn()->prepare("DELETE FROM alumni

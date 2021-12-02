@@ -135,7 +135,7 @@ let grid = $("#jsGrid").jsGrid({
     },
   ],
   rowClick: function (args) {
-    location.href = "../employee/showHTML/" + args.item.id;
+    location.href = "../student/show/" + args.item.id;
   },
   onItemUpdated: function () {
     let toast = document.getElementById("update-toast");
