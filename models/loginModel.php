@@ -89,7 +89,9 @@ class LoginModel extends Model
     if ($user) {
       $_SESSION["email"] = $email;
       $_SESSION["lastConnection"] = time();
-      $_SESSION["username"] = $user["username"];
+      // $_SESSION["username"] = $user["username"];
+      // print_r($_SESSION);
+      // die();
       return true;
     } else {
       $_SESSION["loginError"] = "Wrong email or password!";
@@ -104,7 +106,7 @@ class LoginModel extends Model
     if (empty($user)) {
       return false;
     } else {
-      $correctPass = $this->checkPass($pass, $user["password"]);
+      $correctPass = $this->checkPass($pass, $user["pass"]);
 
       return $correctPass ? $user : false;
     }

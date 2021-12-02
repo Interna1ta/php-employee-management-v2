@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PHP Employees Management</title>
+    <title>PHP Alumni Management</title>
 
     <!-- JQuery -->
     <script type="text/javascript" defer src="<?php echo BASE_URL; ?>/node_modules\jquery\dist\jquery.min.js"></script>
@@ -35,7 +35,7 @@
                 <input name="pass" type="password" class="form-control" id="floatingPassword" placeholder="Password" title="Assemb13r">
             </div>
             <?php echo (!empty($this->alert)) ? "<div class='alert alert-" . $this->alert['type'] . " mt-3 role='alert'>" . $this->alert['text'] . "</div>" : "" ?>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
             <p class="mt-5 mb-3 text-muted">Already registered? Please <a href="<?php echo BASE_URL ?>login/show">log in</a> here</p>
             <p class="mt-4 mb-3 text-muted">&copy; 2021</p>
         </form>

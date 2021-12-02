@@ -47,7 +47,7 @@ class SignupModel extends Model
         $query = $connection->prepare("INSERT INTO users (username, email, pass)
         VALUES (:username, :email, :pass);");
 
-        $encryptedPassword = password_hash($user["password"], PASSWORD_BCRYPT);
+        $encryptedPassword = password_hash($user["pass"], PASSWORD_BCRYPT);
 
         try {
             $query->execute(["username" => $user["username"], "email" => $user["email"], "pass" => $encryptedPassword]);
