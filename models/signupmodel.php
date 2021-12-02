@@ -11,6 +11,9 @@ class SignupModel extends Model
     public function signUp(array $inputUser): bool
     {
         if ($this->checkUser($inputUser)) {
+            $_SESSION["email"] = $inputUser["email"];
+            $_SESSION["lastConnection"] = time();
+            $_SESSION["username"] = $inputUser["username"];
             return $this->insertUser($inputUser);
         }
 
