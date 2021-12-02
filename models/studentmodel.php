@@ -1,6 +1,6 @@
 <?php
 
-class EmployeeModel extends Model
+class StudentModel extends Model
 {
     public function __construct()
     {
@@ -9,7 +9,9 @@ class EmployeeModel extends Model
 
     public function getStudent(string $id): array
     {
-        $query = $this->db->conn()->prepare("SELECT a.*, b.postal_code, b.state, b.city, b.street_address
+        $connection = $this->db->conn();
+
+        $query = $connection->prepare("SELECT a.*, b.postal_code, b.state, b.city, b.street_address
         FROM alumni AS a
         INNER JOIN addresses AS b ON a.address_id = b.id
         WHERE a.id = :id");
@@ -19,11 +21,11 @@ class EmployeeModel extends Model
             $student = $query->fetch();
             return $student;
         } catch (PDOException $e) {
-            return $e;
+            echo $e;
         }
     }
 
-    public function add(array $data): void
+    public function addStudent(array $data): void
     {
         $connection = $this->db->conn();
 
@@ -45,16 +47,18 @@ class EmployeeModel extends Model
         }
     }
 
-    public function update($data)
+    public function updateStudent(array $data): string|false
     {
-        $query1 = $this->db->conn()->prepare("BEGIN;");
-        $query2 = $this->db->conn()->prepare("UPDATE alumni
+        $connection = $this->db->conn();
+
+        $query1 = $connection->prepare("BEGIN;");
+        $query2 = $connection->prepare("UPDATE alumni
         SET name = :name, last_name = :last_name, gender_id = :gender_id, email = :email, age = :age, phone_number = :phone_number
         WHERE id = :id;");
-        $query3 = $this->db->conn()->prepare("UPDATE addresses
+        $query3 = $connection->prepare("UPDATE addresses
         SET postal_code = :postal_code, state = :state, city = :city, street_address = :street_address
         WHERE id = :address_id;");
-        $query4 = $this->db->conn()->prepare("COMMIT;");
+        $query4 = $connection->prepare("COMMIT;");
 
         try {
             $query1->execute();

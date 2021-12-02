@@ -11,3 +11,12 @@
     font-size: 3.5rem;
   }
 }
+
+/* toast */
+.update-toast,
+.delete-toast{
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  right: 0;
+}

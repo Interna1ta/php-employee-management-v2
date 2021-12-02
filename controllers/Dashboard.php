@@ -7,21 +7,21 @@ class Dashboard extends Controller
         parent::__construct();
     }
 
-    public function showHTML(): void
+    public function show(): void
     {
         $this->view->render("dashboard");
     }
 
     public function printData(): void
     {
-        $alumni = $this->model->get();
+        $alumni = $this->model->getStudents();
         echo $alumni;
     }
 
     public function printNewStudent(): void
     {
         if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST") {
-            $this->model->add($_POST);
+            $this->model->addStudent($_POST);
         }
     }
 
@@ -29,7 +29,7 @@ class Dashboard extends Controller
     {
         if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "PUT") {
             parse_str(file_get_contents("php://input"), $_PUT);
-            $this->model->update($_PUT);
+            $this->model->updateStudent($_PUT);
         }
     }
 
@@ -37,7 +37,7 @@ class Dashboard extends Controller
     {
         if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "DELETE") {
             parse_str(file_get_contents("php://input"), $_DELETE);
-            $this->model->delete($_DELETE);
+            $this->model->deleteStudent($_DELETE);
         }
     }
 }

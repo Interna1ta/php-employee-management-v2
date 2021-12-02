@@ -22,7 +22,7 @@ require 'views/header.php';
             <div id="delete-toast" class='delete-toast toast align-items-center text-white bg-primary border-0 w-25 mx-auto my-5' role='alert' aria-live='assertive' aria-atomic='true'>
                 <div class='d-flex'>
                     <div class='toast-body'>
-                        <span id='employee-deleted'>Student successfully deleted.</span>
+                        <span id='student-deleted'>Student successfully deleted.</span>
                     </div>
                 </div>
             </div>
