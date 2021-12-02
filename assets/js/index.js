@@ -137,27 +137,27 @@ let grid = $("#jsGrid").jsGrid({
   rowClick: function (args) {
     location.href = "../employee/showHTML/" + args.item.id;
   },
-  // onItemUpdated: function () {
-  //   let toast = document.getElementById("update-toast");
-  //   toast.classList.remove("toast");
-  //   setTimeout(() => {
-  //     toast.classList.add("toast");
-  //   }, 2000);
-  // },
-  // onItemDeleted: function () {
-  //   let toast = document.getElementById("delete-toast");
-  //   toast.classList.remove("toast");
-  //   setTimeout(() => {
-  //     toast.classList.add("toast");
-  //   }, 2000);
-  // },
+  onItemUpdated: function () {
+    let toast = document.getElementById("update-toast");
+    toast.classList.remove("toast");
+    setTimeout(() => {
+      toast.classList.add("toast");
+    }, 2000);
+  },
+  onItemDeleted: function () {
+    let toast = document.getElementById("delete-toast");
+    toast.classList.remove("toast");
+    setTimeout(() => {
+      toast.classList.add("toast");
+    }, 2000);
+  },
 });
 
 $("#jsGrid").jsGrid("fieldOption", "id", "visible", false);
 
-// let toast = document.getElementById("toast");
-// if (toast) {
-//   setTimeout(() => {
-//     toast.remove();
-//   }, 3000);
-// }
+let toast = document.getElementById("toast");
+if (toast) {
+  setTimeout(() => {
+    toast.remove();
+  }, 3000);
+}

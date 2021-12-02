@@ -35,7 +35,7 @@ class Database
 
             return $pdo;
         } catch (PDOException $e) {
-            require_once("views/error");
+            echo $e;
         }
     }
 }
