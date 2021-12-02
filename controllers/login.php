@@ -24,7 +24,8 @@ class Login extends Controller
 
     if (!$result) {
       $this->view->alert = ["text" => "Wrong password or email", "type" => "danger"];
-      require_once 'views/login/index.php';
+      // require_once 'views/login/index.php';
+      $this->show();
       // header('Location: ' . BASE_URL . 'login/show');
     } else {
       header('Location: ' . BASE_URL . 'dashboard/show');
