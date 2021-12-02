@@ -15,7 +15,7 @@ class Login extends Controller
   public function logoutUser()
   {
     $this->model->logout();
-    header('Location: ' . BASE_URL . 'login');
+    header('Location: ' . BASE_URL . 'login/show');
   }
 
   public function loginUser()
@@ -31,8 +31,8 @@ class Login extends Controller
     }
   }
 
-  // function destroySession()
-  // {
-  //   $this->model->destroySession();
-  // }
+  function destroySession()
+  {
+    $this->model->destroySession();
+  }
 }
