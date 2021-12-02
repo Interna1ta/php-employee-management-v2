@@ -49,7 +49,7 @@
             <input name="phoneNumber" type="number" class="form-control" id="floatingPhoneNumber" placeholder="666666666" data-bs-toggle="tooltip" data-bs-html="true" value="<?php echo isset($this->student) ? $this->student["phone_number"] : "" ?>">
         </div>
         <div class="col-12 form-floating mt-3">
-            <?= ($alert) ? "<div class='alert alert-$alert[type] role='alert'>$alert[text]</div>" : "" ?>
+            <?= isset($alert) ? "<div class='alert alert-$alert[type] role='alert'>$alert[text]</div>" : "" ?>
         </div>
         <div class="col-12 form-floating mt-3">
             <button class="btn btn-primary" type="submit"><?php echo isset($this->student) ? "Edit" : "Create" ?></button>
