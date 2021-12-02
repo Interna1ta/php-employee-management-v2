@@ -58,7 +58,14 @@ let grid = $("#jsGrid").jsGrid({
       headercss: "table__header",
       css: "table__row",
       width: 50,
-      validate: "required",
+      validate: [
+        "required",
+        {
+          validator: "rangeLength",
+          message: "Names must be between 3 and 15 characteres long",
+          param: [3, 15],
+        },
+      ],
     },
     {
       name: "email",
@@ -67,7 +74,12 @@ let grid = $("#jsGrid").jsGrid({
       headercss: "table__header",
       css: "table__row",
       width: 80,
-      validate: "required",
+      validate: {
+        validator: "pattern",
+        message: "The email must match the example@example.ex format ",
+        param:
+          /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/,
+      },
     },
     {
       name: "age",
@@ -76,10 +88,16 @@ let grid = $("#jsGrid").jsGrid({
       headercss: "table__header",
       css: "table__row",
       width: 40,
-      validate: function (value) {
-        if (value > 0) {
-          return true;
-        }
+      validate: {
+        validator: "range",
+        message: function (value, item) {
+          return (
+            'The student age should be between 10 and 100. Entered age is "' +
+            value +
+            '" is out of specified range.'
+          );
+        },
+        param: [10, 100],
       },
     },
     {
