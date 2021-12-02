@@ -21,7 +21,7 @@
   <main class="form-signin">
     <form action="<?php echo BASE_URL ?>login/loginUser" method="POST">
       <img src="<?php echo BASE_URL; ?>/assets/img/assembler_icon.jfif" width="40" height="40" class="me-3" alt="Assembler School">
-      <h1 class="h3 mb-4 fw-normal">Please sign in</h1>
+      <h1 class="h3 mt-2 mb-5 fw-normal">Please sign in</h1>
 
       <div class="form-floating text-left mt-2">
         <label for="floatingInput">Email address</label>
@@ -33,7 +33,8 @@
       </div>
       <?php echo (!empty($this->alert)) ? "<div class='alert alert-" . $this->alert['type'] . " mt-2 role='alert'>" . $this->alert['text'] . "</div>" : "" ?>
       <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+      <p class="mt-5 mb-3 text-muted">Not registered? Please <a href="<?php echo BASE_URL ?>signup/show">sign up</a> here</p>
+      <p class="mt-4 mb-3 text-muted">&copy; 2021</p>
     </form>
   </main>
 
