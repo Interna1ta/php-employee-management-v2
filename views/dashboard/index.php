@@ -1,6 +1,6 @@
 <?php
-require_once "controllers/dashboard.php";
 require 'views/header.php';
+session_start();
 ?>
 
 <div class="container-fluid">
@@ -9,7 +9,7 @@ require 'views/header.php';
         <main class="col-12 ms-sm-auto px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">
-                    Welcome <span class="text-primary"></span>
+                    Welcome <span class="text-primary"><?php echo isset($_SESSION["username"]) ? $_SESSION["username"] : "" ?></span>
                 </h1>
             </div>
             <div id="update-toast" class='update-toast toast align-items-center text-white bg-primary border-0 w-25 mx-auto my-5' role='alert' aria-live='assertive' aria-atomic='true'>

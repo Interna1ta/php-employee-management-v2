@@ -87,12 +87,12 @@ class LoginModel extends Model
     $user = $this->checkUser($email, $pass);
 
     if ($user) {
+      session_start();
       $_SESSION["email"] = $email;
       $_SESSION["lastConnection"] = time();
       $_SESSION["username"] = $user["username"];
       return true;
     } else {
-      $_SESSION["loginError"] = "Wrong email or password!";
       return false;
     }
   }
@@ -104,7 +104,7 @@ class LoginModel extends Model
     if (empty($user)) {
       return false;
     } else {
-      $correctPass = $this->checkPass($pass, $user["password"]);
+      $correctPass = $this->checkPass($pass, $user["pass"]);
 
       return $correctPass ? $user : false;
     }
@@ -153,14 +153,14 @@ class LoginModel extends Model
     }
   }
 
-  public function checkLoginError()
-  {
-    if (isset($_SESSION["loginError"])) {
-      $errorText = $_SESSION["loginError"];
-      unset($_SESSION["loginError"]);
-      return ["type" => "danger", "text" => $errorText];
-    }
-  }
+  // public function checkLoginError()
+  // {
+  //   if (isset($_SESSION["loginError"])) {
+  //     $errorText = $_SESSION["loginError"];
+  //     unset($_SESSION["loginError"]);
+  //     return ["type" => "danger", "text" => $errorText];
+  //   }
+  // }
 
   public function checkLoginInfo()
   {
