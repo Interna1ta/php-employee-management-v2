@@ -22,6 +22,11 @@ class Router
             require_once $controllerFile;
             $controllerName = $this->getController();
             $uri = $this->getUri();
+
+            // echo '<pre>';
+            // echo print_r($uri);
+            // echo '</pre>';
+
             $this->controller = new $controllerName();
             $this->controller->loadModel($controllerName);
 
