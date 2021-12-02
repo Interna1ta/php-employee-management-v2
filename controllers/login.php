@@ -7,7 +7,7 @@ class Login extends Controller
     parent::__construct();
   }
 
-  public function showHTML()
+  public function show()
   {
     $this->view->render("login");
   }
@@ -23,11 +23,12 @@ class Login extends Controller
     $result = $this->model->login($_POST['email'], $_POST['pass']);
 
     if (!$result) {
-      header('Location: ' . BASE_URL . 'login');
-      exit();
+      $this->view->alert = ["text" => "Wrong password or email", "type" => "danger"];
+      require_once 'views/login/index.php';
+      // header('Location: ' . BASE_URL . 'login/show');
+    } else {
+      header('Location: ' . BASE_URL . 'dashboard/show');
     }
-    header('Location: ' . BASE_URL . 'dashboard');
-    exit();
   }
 
   // function destroySession()

@@ -85,7 +85,7 @@ class LoginModel extends Model
     header('Location: ' . BASE_URL . 'login/index');
   }
 
-  public function login(string $email, string $pass)
+  public function login(string $email, string $pass): bool
   {
     $user = $this->checkUser($email, $pass);
 
@@ -93,28 +93,23 @@ class LoginModel extends Model
       $_SESSION["email"] = $email;
       $_SESSION["lastConnection"] = time();
       $_SESSION["username"] = $user["username"];
-      header('Location: ' . BASE_URL . 'dashboard/show');
+      return true;
     } else {
       $_SESSION["loginError"] = "Wrong email or password!";
-      // header("Location:../../index.php");
-      header('Location: ' . BASE_URL . 'dashboard/index');
+      return false;
     }
   }
 
-  public function checkUser(string $email, string $pass)
+  public function checkUser(string $email, string $pass): array|false
   {
     $user = $this->getUser($email);
 
     if (empty($user)) {
-      echo "Sorry, we cannot recognize you. Are you new?";
+      return false;
     } else {
       $correctPass = $this->checkPass($pass, $user["password"]);
 
-      if ($correctPass) {
-        return $user;
-      } else {
-        echo "Incorrect password";
-      }
+      return $correctPass ? $user : false;
     }
   }
 
@@ -137,7 +132,7 @@ class LoginModel extends Model
     }
   }
 
-  public function checkPass(string $inputPass, string $dbPass)
+  public function checkPass(string $inputPass, string $dbPass): bool
   {
     return password_verify($inputPass, $dbPass);
   }
