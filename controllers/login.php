@@ -7,7 +7,7 @@ class Login extends Controller
     parent::__construct();
   }
 
-  public function showHTML()
+  public function show()
   {
     $this->view->render("login");
   }
@@ -15,7 +15,7 @@ class Login extends Controller
   public function logoutUser()
   {
     $this->model->logout();
-    header('Location: ' . BASE_URL . 'login');
+    header('Location: ' . BASE_URL . 'login/show');
   }
 
   public function loginUser()
@@ -23,15 +23,15 @@ class Login extends Controller
     $result = $this->model->login($_POST['email'], $_POST['pass']);
 
     if (!$result) {
-      header('Location: ' . BASE_URL . 'login');
+      header('Location: ' . BASE_URL . 'login/show');
       exit();
     }
-    header('Location: ' . BASE_URL . 'dashboard');
+    header('Location: ' . BASE_URL . 'dashboard/show');
     exit();
   }
 
-  // function destroySession()
-  // {
-  //   $this->model->destroySession();
-  // }
+  function destroySession()
+  {
+    $this->model->destroySession();
+  }
 }

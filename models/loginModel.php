@@ -25,7 +25,7 @@ class LoginModel extends Model
       }
 
       if (isset($_SESSION["email"])) {
-        header('Location: ' . BASE_URL . 'dashboard/index');
+        header('Location: ' . BASE_URL . 'dashboard/show');
       } else {
 
         // Check for session error
@@ -40,7 +40,7 @@ class LoginModel extends Model
     } else {
       if (!isset($_SESSION["email"]) || !isset($_SESSION["lastConnection"])) {
         $_SESSION["loginError"] = "You don't have permission to enter the dashboard. Please Login.";
-        header('Location: ' . BASE_URL . 'login/index');
+        header('Location: ' . BASE_URL . 'login/show');
       }
 
       if (isset($_SESSION["lastConnection"]) && (time() - $_SESSION["lastConnection"] >= 3000)) {
@@ -65,7 +65,7 @@ class LoginModel extends Model
     // Destroy the session
     session_destroy();
     // header("Location:../index.php?timeExpire=true");
-    header('Location: ' . BASE_URL . 'login/index');
+    header('Location: ' . BASE_URL . 'login/show');
   }
 
   public function destroySession()
@@ -82,10 +82,10 @@ class LoginModel extends Model
     // Destroy the session
     session_destroy();
     // header("Location:../../index.php?logout=true");
-    header('Location: ' . BASE_URL . 'login/index');
+    header('Location: ' . BASE_URL . 'login/show');
   }
 
-  public function login(string $email, string $pass)
+  public function login(string $email, string $pass): bool
   {
     $user = $this->checkUser($email, $pass);
 
@@ -93,11 +93,10 @@ class LoginModel extends Model
       $_SESSION["email"] = $email;
       $_SESSION["lastConnection"] = time();
       $_SESSION["username"] = $user["username"];
-      header('Location: ' . BASE_URL . 'dashboard/show');
+      return true;
     } else {
       $_SESSION["loginError"] = "Wrong email or password!";
-      // header("Location:../../index.php");
-      header('Location: ' . BASE_URL . 'dashboard/index');
+      return false;
     }
   }
 
@@ -120,14 +119,17 @@ class LoginModel extends Model
 
   public function getUser(string $email)
   {
-    $query = $this->db->conn()->prepare("SELECT *
+    $connection = $this->db->conn();
+
+    $query = $connection->prepare("SELECT *
     FROM users
     WHERE email = :email;");
 
     try {
-      $res = $query->execute(["email" => $email]);
+      $response = $query->execute(["email" => $email]);
       $user = $query->fetch();
-      if (empty($res)) {
+
+      if (empty($response)) {
         return false;
       } else {
         return $user;
@@ -137,13 +139,14 @@ class LoginModel extends Model
     }
   }
 
-  public function checkPass(string $inputPass, string $dbPass)
+  public function checkPass(string $inputPass, string $dbPass): bool
   {
     return password_verify($inputPass, $dbPass);
   }
 
   public function destroySessionCookie()
   {
+    echo 'yes';
     if (ini_get("session.use_cookies")) {
       $params = session_get_cookie_params();
       setcookie(

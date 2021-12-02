@@ -43,7 +43,7 @@
     </ul>
     <ul class="navbar-nav px-3">
       <li class="nav-item text-nowrap px-2">
-        <a class="nav-link" href="./library/loginController.php?logout=true">Sign out</a>
+        <a class="nav-link" href="<?php echo BASE_URL ?>login/destroySession">Sign out</a>
       </li>
     </ul>
   </header>
