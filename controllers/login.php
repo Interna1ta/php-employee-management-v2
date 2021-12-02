@@ -15,7 +15,8 @@ class Login extends Controller
   public function logoutUser()
   {
     $this->model->logout();
-    header('Location: ' . BASE_URL . 'login/show');
+    $this->view->alert = ["text" => "Logout successfull", "type" => "success"];
+    $this->show();
   }
 
   public function loginUser()
@@ -33,5 +34,7 @@ class Login extends Controller
   function destroySession()
   {
     $this->model->destroySession();
+    $this->view->alert = ["text" => "Logout successfull", "type" => "success"];
+    $this->show();
   }
 }

@@ -21,19 +21,18 @@
   <main class="form-signin">
     <form action="<?php echo BASE_URL ?>login/loginUser" method="POST">
       <img src="<?php echo BASE_URL; ?>/assets/img/assembler_icon.jfif" width="40" height="40" class="me-3" alt="Assembler School">
-      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+      <h1 class="h3 mb-4 fw-normal">Please sign in</h1>
 
-      <div class="form-floating">
+      <div class="form-floating text-left mt-2">
         <label for="floatingInput">Email address</label>
         <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" data-bs-toggle="tooltip" data-bs-html="true" title="imassembler@assemblerschool.com">
       </div>
-      <div class="form-floating">
+      <div class="form-floating text-left mt-2">
         <label for="floatingPassword">Password</label>
         <input name="pass" type="password" class="form-control" id="floatingPassword" placeholder="Password" title="Assemb13r">
       </div>
-      <?php echo (!empty($this->alert)) ? "<div class='alert alert-" . $this->alert['type'] . " role='alert'>" . $this->alert['text'] . "</div>" : "" ?>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
-      <p class="mt-5 mb-3 text-muted">Are you new? Please <a href="<?php echo BASE_URL ?>signup/show">sign up</a> here</p>
+      <?php echo (!empty($this->alert)) ? "<div class='alert alert-" . $this->alert['type'] . " mt-2 role='alert'>" . $this->alert['text'] . "</div>" : "" ?>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
     </form>
   </main>
