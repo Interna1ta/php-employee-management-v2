@@ -91,6 +91,7 @@ class LoginModel extends Model
       $_SESSION["email"] = $email;
       $_SESSION["lastConnection"] = time();
       $_SESSION["username"] = $user["username"];
+
       return true;
     } else {
       return false;

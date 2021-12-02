@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PHP Employees Management</title>
+    <title>PHP Alumni Management</title>
 
     <!-- JQuery -->
     <script type="text/javascript" defer src="<?php echo BASE_URL; ?>/node_modules\jquery\dist\jquery.min.js"></script>
