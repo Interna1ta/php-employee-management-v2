@@ -87,26 +87,13 @@ class LoginModel extends Model
 
   public function login(string $email, string $pass)
   {
-    // Start session
-    session_start();
+    $user = $this->checkUser($email, $pass);
 
-    // Get form input values
-    // $email = $_POST["email"];
-    // $pass = $_POST["pass"];
-
-    echo 'yes';
-    die();
-
-    // Now we should look for this values in a database
-    // Instead we'll use static vars
-    if (self::checkUser($email, $pass)) {
-      // we usually save in a session variable user id and other user data like name, surname....
+    if ($user) {
       $_SESSION["email"] = $email;
-      // we save the last connection
       $_SESSION["lastConnection"] = time();
-      // when we check that the email and password is correct, we redirect the user to the dashboard
-      // header("Location:../dashboard.php");
-      header('Location: ' . BASE_URL . 'dashboard/index');
+      $_SESSION["username"] = $user["username"];
+      header('Location: ' . BASE_URL . 'dashboard/show');
     } else {
       $_SESSION["loginError"] = "Wrong email or password!";
       // header("Location:../../index.php");
@@ -116,24 +103,43 @@ class LoginModel extends Model
 
   public function checkUser(string $email, string $pass)
   {
-    $jsonData = file_get_contents('../../resources/users.json');
-    $usersData = json_decode($jsonData, true);
-    $users = $usersData["users"];
+    $user = $this->getUser($email);
 
-    foreach ($users as $user) {
-      if (array_search(
-        $email,
-        $user
-      ) !== false) {
-        $currentUser = $user;
+    if (empty($user)) {
+      echo "Sorry, we cannot recognize you. Are you new?";
+    } else {
+      $correctPass = $this->checkPass($pass, $user["password"]);
+
+      if ($correctPass) {
+        return $user;
+      } else {
+        echo "Incorrect password";
       }
     }
+  }
 
-    if (isset($currentUser) && password_verify($pass, $currentUser["password"])) {
-      return true;
-    } else {
-      return false;
+  public function getUser(string $email)
+  {
+    $query = $this->db->conn()->prepare("SELECT *
+    FROM users
+    WHERE email = :email;");
+
+    try {
+      $res = $query->execute(["email" => $email]);
+      $user = $query->fetch();
+      if (empty($res)) {
+        return false;
+      } else {
+        return $user;
+      }
+    } catch (PDOException $e) {
+      echo $e;
     }
+  }
+
+  public function checkPass(string $inputPass, string $dbPass)
+  {
+    return password_verify($inputPass, $dbPass);
   }
 
   public function destroySessionCookie()

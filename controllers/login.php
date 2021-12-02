@@ -5,8 +5,11 @@ class Login extends Controller
   public function __construct()
   {
     parent::__construct();
+  }
+
+  public function showHTML()
+  {
     $this->view->render("login");
-    // $this->loadModel("login");
   }
 
   public function logoutUser()
@@ -17,10 +20,7 @@ class Login extends Controller
 
   public function loginUser()
   {
-    // echo $_POST;
-    // die();
-
-    $result = $this->model->login($_POST['email'], $_POST['password']);
+    $result = $this->model->login($_POST['email'], $_POST['pass']);
 
     if (!$result) {
       header('Location: ' . BASE_URL . 'login');

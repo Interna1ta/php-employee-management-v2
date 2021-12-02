@@ -20,7 +20,7 @@
 <body class="text-center">
 
   <main class="form-signin">
-    <form action="<?php echo BASE_URL ?>login/loginUser" method="POST">
+    <form action="<?php echo BASE_URL ?>/login/loginUser" method="POST">
       <img src="<?php echo BASE_URL; ?>/assets/img/assembler_icon.jfif" width="40" height="40" class="me-3" alt="Assembler School">
       <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
