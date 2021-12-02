@@ -32,7 +32,8 @@
         <input name="pass" type="password" class="form-control" id="floatingPassword" placeholder="Password" title="Assemb13r">
       </div>
       <?php echo (!empty($this->alert)) ? "<div class='alert alert-" . $this->alert['type'] . " role='alert'>" . $this->alert['text'] . "</div>" : "" ?>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
+      <p class="mt-5 mb-3 text-muted">Are you new? Please <a href="<?php echo BASE_URL ?>signup/show">sign up</a> here</p>
       <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
     </form>
   </main>
