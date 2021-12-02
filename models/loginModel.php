@@ -51,16 +51,18 @@ class LoginModel extends Model
     }
   }
 
+  public function logout()
+  {
+    session_destroy();
+  }
+
   public function destroyLastSession()
   {
-    // Start session
-    session_start();
-
     // Unset all session variables
     unset($_SESSION);
 
     // Destroy session cookie
-    self::destroySessionCookie();
+    $this->destroySessionCookie();
 
     // Destroy the session
     session_destroy();
@@ -70,19 +72,14 @@ class LoginModel extends Model
 
   public function destroySession()
   {
-    // Start session
-    session_start();
-
     // Unset all session variables
     unset($_SESSION);
 
     // Destroy session cookie
-    self::destroySessionCookie();
+    $this->destroySessionCookie();
 
     // Destroy the session
     session_destroy();
-    // header("Location:../../index.php?logout=true");
-    header('Location: ' . BASE_URL . 'login/show');
   }
 
   public function login(string $email, string $pass): bool
@@ -142,7 +139,6 @@ class LoginModel extends Model
 
   public function destroySessionCookie()
   {
-    echo 'yes';
     if (ini_get("session.use_cookies")) {
       $params = session_get_cookie_params();
       setcookie(
